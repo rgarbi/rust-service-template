@@ -3,7 +3,7 @@ services:
   - type: web
     name: prod {{ tmplr.project_name }}
     env: docker
-    repo: https://{{ tmplr.remote_provider }}/{{ tmplr.remote_owner }}/{{ tmplr.project_name }}
+    repo: {{ tmplr.remote_provider }}/{{ tmplr.remote_owner }}/{{ tmplr.project_name }}
     branch: main
     region: oregon
     plan: starter
@@ -49,7 +49,7 @@ services:
   - type: web
     name: staging {{ tmplr.project_name }}
     env: docker
-    repo: https://{{ tmplr.remote_provider }}/{{ tmplr.remote_owner }}/{{ tmplr.project_name }}
+    repo: {{ tmplr.remote_provider }}/{{ tmplr.remote_owner }}/{{ tmplr.project_name }}
     branch: staging
     region: oregon
     plan: starter
