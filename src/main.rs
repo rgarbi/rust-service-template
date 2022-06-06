@@ -1,6 +1,6 @@
-use rust-service-template::configuration::get_configuration;
-use rust-service-template::startup::Application;
-use rust-service-template::telemetry::{get_subscriber, init_subscriber};
+use {{ tmplr.project_name }}::configuration::get_configuration;
+use {{ tmplr.project_name }}::startup::Application;
+use {{ tmplr.project_name }}::telemetry::{get_subscriber, init_subscriber};
 
 #[tokio::main]
 async fn main() -> std::io::Result<()> {
