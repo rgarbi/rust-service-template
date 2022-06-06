@@ -1,9 +1,9 @@
 services:
   #Prod API
   - type: web
-    name: prod {{ tmplr.project_name }}
+    name: prod rust-service-template
     env: docker
-    repo: {{ tmplr.remote_provider }}/{{ tmplr.remote_owner }}/{{ tmplr.project_name }}
+    repo: github.com/rgarbi/rust-service-template
     branch: main
     region: oregon
     plan: starter
@@ -12,23 +12,23 @@ services:
     envVars:
       - key: APP__DATABASE__USERNAME
         fromDatabase:
-          name: prod {{ tmplr.project_name }}-db
+          name: prod rust-service-template-db
           property: user
       - key: APP__DATABASE__PASSWORD
         fromDatabase:
-          name: prod {{ tmplr.project_name }}-db
+          name: prod rust-service-template-db
           property: password
       - key: APP__DATABASE__HOST
         fromDatabase:
-          name: prod {{ tmplr.project_name }}-db
+          name: prod rust-service-template-db
           property: host
       - key: APP__DATABASE__PORT
         fromDatabase:
-          name: prod {{ tmplr.project_name }}-db
+          name: prod rust-service-template-db
           property: port
       - key: APP__DATABASE__DATABASE_NAME
         fromDatabase:
-          name: prod {{ tmplr.project_name }}-db
+          name: prod rust-service-template-db
           property: database
       - key: APP__APPLICATION__WEB_APP_HOST
         value: https://SOME_APP_WEB_HOST.COM
@@ -47,9 +47,9 @@ services:
 
   #STAGING API
   - type: web
-    name: staging {{ tmplr.project_name }}
+    name: staging rust-service-template
     env: docker
-    repo: {{ tmplr.remote_provider }}/{{ tmplr.remote_owner }}/{{ tmplr.project_name }}
+    repo: github.com/rgarbi/rust-service-template
     branch: staging
     region: oregon
     plan: starter
@@ -58,23 +58,23 @@ services:
     envVars:
       - key: APP__DATABASE__USERNAME
         fromDatabase:
-          name: staging {{ tmplr.project_name }}-db
+          name: staging rust-service-template-db
           property: user
       - key: APP__DATABASE__PASSWORD
         fromDatabase:
-          name: staging {{ tmplr.project_name }}-db
+          name: staging rust-service-template-db
           property: password
       - key: APP__DATABASE__HOST
         fromDatabase:
-          name: staging {{ tmplr.project_name }}-db
+          name: staging rust-service-template-db
           property: host
       - key: APP__DATABASE__PORT
         fromDatabase:
-          name: staging {{ tmplr.project_name }}-db
+          name: staging rust-service-template-db
           property: port
       - key: APP__DATABASE__DATABASE_NAME
         fromDatabase:
-          name: staging {{ tmplr.project_name }}-db
+          name: staging rust-service-template-db
           property: database
       - key: APP__APPLICATION__WEB_APP_HOST
         value: https://SOME_APP_WEB_HOST.COM
@@ -92,11 +92,11 @@ services:
         value: EMAIL_CLIENT_SENDER_EMAil
 
 databases:
-  - name: prod {{ tmplr.project_name }}-db
+  - name: prod rust-service-template-db
     plan: starter
     region: oregon
-    databaseName: prod_{{ tmplr.project_name }}_db
-  - name: staging {{ tmplr.project_name }}-db
+    databaseName: prod_rust-service-template_db
+  - name: staging rust-service-template-db
     plan: starter
     region: oregon
-    databaseName: staging_{{ tmplr.project_name }}_db
+    databaseName: staging_rust-service-template_db

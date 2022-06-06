@@ -8,7 +8,7 @@ database:
   port: 5432
   username: "postgres"
   password: "password"
-  database_name: "{{ tmplr.project_name }}"
+  database_name: "rust-service-template"
 auth_config:
   audience: "https://hello-world.example.com"
   issuer: "http://localhost:8000"

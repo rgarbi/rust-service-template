@@ -3,7 +3,7 @@ FROM rust:latest AS builder
 RUN update-ca-certificates
 
 # Create appuser
-ENV USER={{ tmplr.project_name }}
+ENV USER=rust-service-template
 ENV UID=10001
 
 RUN adduser \
@@ -16,7 +16,7 @@ RUN adduser \
     "${USER}"
 
 
-WORKDIR /{{ tmplr.project_name }}
+WORKDIR /rust-service-template
 
 COPY ./ .
 
@@ -24,7 +24,7 @@ ENV SQLX_OFFLINE true
 RUN cargo build --release
 
 ######################
-FROM ubuntu:latest as {{ tmplr.project_name }}
+FROM ubuntu:latest as rust-service-template
 
 RUN apt-get update && apt-get install -y libssl-dev ca-certificates && rm -rf /var/lib/apt/lists/*
 
@@ -35,13 +35,13 @@ COPY --from=builder /etc/group /etc/group
 WORKDIR /rust-service-template
 
 # Copy our build
-COPY --from=builder /{{ tmplr.project_name }}/target/release/{{ tmplr.project_name }} ./
-COPY --from=builder /{{ tmplr.project_name }}/configuration ./configuration
+COPY --from=builder /rust-service-template/target/release/rust-service-template ./
+COPY --from=builder /rust-service-template/configuration ./configuration
 
 # Use an unprivileged user.
-USER {{ tmplr.project_name }}:{{ tmplr.project_name }}
+USER rust-service-template:rust-service-template
 
 EXPOSE 8000
 ENV APP_ENVIRONMENT production
 
-CMD ["/{{ tmplr.project_name }}/{{ tmplr.project_name }}"]
+CMD ["/rust-service-template/rust-service-template"]
