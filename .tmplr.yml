@@ -1,15 +1,15 @@
 # .tmplr.yml
 steps:
   - read: project_name
-    from: env.github.event.repository.name
+    from: env.repo_name
     fallback:
       from: path.rootdir
 
   - read: remote_provider
-    from: env.github.server_url
+    from: env.server_url
 
   - read: remote_owner
-    from: env.github.repository_owner
+    from: env.owner
 
   - read: clone_url
     from: git.remote_url
