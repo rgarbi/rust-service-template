@@ -1,11 +1,11 @@
-use {{ tmplr.project_name }}::configuration::get_configuration;
-use {{ tmplr.project_name }}::startup::Application;
-use {{ tmplr.project_name }}::telemetry::{get_subscriber, init_subscriber};
+use {{ tmplr.project_name | snake_case }}::configuration::get_configuration;
+use {{ tmplr.project_name | snake_case }}::startup::Application;
+use {{ tmplr.project_name | snake_case }}::telemetry::{get_subscriber, init_subscriber};
 
 #[tokio::main]
 async fn main() -> std::io::Result<()> {
     let subscriber = get_subscriber(
-        "newsletter-signup-service".into(),
+        "{{ tmplr.project_name }}".into(),
         "info".into(),
         std::io::stdout,
     );
