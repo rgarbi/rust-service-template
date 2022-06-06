@@ -1,5 +1,5 @@
-![example workflow]({{ tmplr.remote_provider }}/{{ tmplr.remote_owner }}/{{ tmplr.project_name }}/actions/workflows/general.yml/badge.svg)
+![example workflow](github.com/rgarbi/rust-service-template/actions/workflows/general.yml/badge.svg)
 
-# {{ tmplr.project_name }}
+# rust-service-template
 
 
