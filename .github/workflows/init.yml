@@ -42,10 +42,11 @@ jobs:
         if: steps.template_exists.outputs.files_exists == 'true'
         run: npx tmplr && rm -fr .tmplr.yml && rm -fr .github/workflows/init.yml
         env:
-          owner_name: ${{ github.event.repository.owner.name }}
+          owner: ${{ github.repository_owner }}
           owner_email: ${{ github.event.repository.owner.email }}
           repo_name: ${{ github.event.repository.name }}
           repo_url: ${{ github.event.repository.ssh_url }}
+          server_url: ${{ github.server_url }}
 
       #
       # Commit the code
