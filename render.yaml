@@ -1,0 +1,102 @@
+services:
+  #Prod API
+  - type: web
+    name: prod {{ tmplr.project_name }}
+    env: docker
+    repo: {{ tmplr.remote_provider }}/{{ tmplr.remote_owner }}/{{ tmplr.project_name }}
+    branch: main
+    region: oregon
+    plan: starter
+    numInstances: 1
+    healthCheckPath: /health_check
+    envVars:
+      - key: APP__DATABASE__USERNAME
+        fromDatabase:
+          name: prod {{ tmplr.project_name }}-db
+          property: user
+      - key: APP__DATABASE__PASSWORD
+        fromDatabase:
+          name: prod {{ tmplr.project_name }}-db
+          property: password
+      - key: APP__DATABASE__HOST
+        fromDatabase:
+          name: prod {{ tmplr.project_name }}-db
+          property: host
+      - key: APP__DATABASE__PORT
+        fromDatabase:
+          name: prod {{ tmplr.project_name }}-db
+          property: port
+      - key: APP__DATABASE__DATABASE_NAME
+        fromDatabase:
+          name: prod {{ tmplr.project_name }}-db
+          property: database
+      - key: APP__APPLICATION__WEB_APP_HOST
+        value: https://SOME_APP_WEB_HOST.COM
+      - key: APP__AUTH_CONFIG__AUDIENCE
+        value: https://SOME_AUTH_CONFIG_AUDIENCE.COM
+      - key: APP__AUTH_CONFIG__ISSUER
+        value: https://SOME_AUTH_CONFIG_ISSUER
+      - key: APP__AUTH_CONFIG__SIGNING_KEY
+        generateValue: true
+      - key: APP__EMAIL_CLIENT__API_KEY
+        sync: false
+      - key: APP__EMAIL_CLIENT__BASE_URL
+        value: https://api.sendgrid.com
+      - key: APP__EMAIL_CLIENT__SENDER_EMAIL
+        value: EMAIL_CLIENT_SENDER_EMAil
+
+  #STAGING API
+  - type: web
+    name: staging {{ tmplr.project_name }}
+    env: docker
+    repo: {{ tmplr.remote_provider }}/{{ tmplr.remote_owner }}/{{ tmplr.project_name }}
+    branch: staging
+    region: oregon
+    plan: starter
+    numInstances: 1
+    healthCheckPath: /health_check
+    envVars:
+      - key: APP__DATABASE__USERNAME
+        fromDatabase:
+          name: staging {{ tmplr.project_name }}-db
+          property: user
+      - key: APP__DATABASE__PASSWORD
+        fromDatabase:
+          name: staging {{ tmplr.project_name }}-db
+          property: password
+      - key: APP__DATABASE__HOST
+        fromDatabase:
+          name: staging {{ tmplr.project_name }}-db
+          property: host
+      - key: APP__DATABASE__PORT
+        fromDatabase:
+          name: staging {{ tmplr.project_name }}-db
+          property: port
+      - key: APP__DATABASE__DATABASE_NAME
+        fromDatabase:
+          name: staging {{ tmplr.project_name }}-db
+          property: database
+      - key: APP__APPLICATION__WEB_APP_HOST
+        value: https://SOME_APP_WEB_HOST.COM
+      - key: APP__AUTH_CONFIG__AUDIENCE
+        value: https://SOME_AUTH_CONFIG_AUDIENCE.COM
+      - key: APP__AUTH_CONFIG__ISSUER
+        value: https://SOME_AUTH_CONFIG_ISSUER
+      - key: APP__AUTH_CONFIG__SIGNING_KEY
+        generateValue: true
+      - key: APP__EMAIL_CLIENT__API_KEY
+        sync: false
+      - key: APP__EMAIL_CLIENT__BASE_URL
+        value: https://api.sendgrid.com
+      - key: APP__EMAIL_CLIENT__SENDER_EMAIL
+        value: EMAIL_CLIENT_SENDER_EMAil
+
+databases:
+  - name: prod {{ tmplr.project_name }}-db
+    plan: starter
+    region: oregon
+    databaseName: prod_{{ tmplr.project_name }}_db
+  - name: staging {{ tmplr.project_name }}-db
+    plan: starter
+    region: oregon
+    databaseName: staging_{{ tmplr.project_name }}_db

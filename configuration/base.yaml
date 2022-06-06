@@ -1,0 +1,20 @@
+# base.yaml
+application:
+  port: 8000
+  external_hostname: "http://localhost:8000"
+  web_app_host: "http://localhost:3000"
+database:
+  host: "127.0.0.1"
+  port: 5432
+  username: "postgres"
+  password: "password"
+  database_name: "{{ tmplr.project_name }}"
+auth_config:
+  audience: "https://hello-world.example.com"
+  issuer: "http://localhost:8000"
+  signing_key: "pazskj75p3PMrLWOU7tB2q8KczjAKabZyhuHEfbdsUM9od5VP6b9oqccsMLqTH"
+email_client:
+  base_url: "https://api.sendgrid.com"
+  sender_email: "a_sender_email@somedomain.com"
+  api_key: "something"
+  timeout_milliseconds: 10000
