@@ -13,7 +13,6 @@ pub struct Settings {
     pub application: ApplicationSettings,
     pub auth_config: AuthConfig,
     pub email_client: EmailClientSettings,
-    pub stripe_client: StripeClientSettings,
 }
 
 #[derive(serde::Deserialize, Clone)]
@@ -90,6 +89,7 @@ pub enum Environment {
     Local,
     Production,
 }
+
 impl Environment {
     pub fn as_str(&self) -> &'static str {
         match self {

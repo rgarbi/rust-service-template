@@ -15,12 +15,10 @@ use serde::{Deserialize, Serialize};
 use serde_json::{json, Value};
 
 use crate::configuration::get_configuration;
-use crate::domain::user_models::UserGroup;
 
 #[derive(Deserialize, Serialize, Debug, Clone)]
 pub struct Claims {
     pub user_id: String,
-    pub group: UserGroup,
     pub iss: String,
     pub aud: String,
     pub sub: String,
@@ -71,12 +69,11 @@ impl FromRequest for Claims {
     }
 }
 
-pub fn generate_token(user_id: String, user_group: UserGroup) -> String {
+pub fn generate_token(user_id: String) -> String {
     let auth_config = get_configuration().unwrap().auth_config;
     let now = get_now_in_seconds();
     let claims: Claims = Claims {
         user_id: user_id.clone(),
-        group: user_group,
         iss: auth_config.issuer,
         aud: auth_config.audience,
         sub: user_id,
@@ -132,12 +129,11 @@ mod tests {
     use uuid::Uuid;
 
     use crate::auth::token::{generate_token, validate_token};
-    use crate::domain::user_models::UserGroup;
 
     #[test]
     fn given_a_user_id_i_can_generate_a_token() {
         let user_id = Uuid::new_v4().to_string();
-        let token = generate_token(user_id.clone(), UserGroup::USER);
+        let token = generate_token(user_id.clone());
         println!("{}", user_id.clone());
         println!("{}", token);
     }
@@ -145,7 +141,7 @@ mod tests {
     #[test]
     fn given_a_valid_token_i_can_get_claims() {
         let user_id = Uuid::new_v4().to_string();
-        let token = generate_token(user_id.clone(), UserGroup::ADMIN);
+        let token = generate_token(user_id.clone());
         let claims = validate_token(token);
         assert_ok!(&claims);
         assert_eq!(user_id.clone(), *claims.unwrap().user_id)

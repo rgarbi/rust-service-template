@@ -1,9 +1,2 @@
-pub mod checkout_models;
-pub mod otp_models;
-pub mod subscriber_models;
-pub mod subscription_history_models;
-pub mod subscription_models;
-pub mod user_models;
+pub mod sample_model;
 pub mod valid_email;
-pub mod valid_name;
-pub mod valid_string;

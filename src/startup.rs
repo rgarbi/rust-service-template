@@ -111,6 +111,7 @@ pub fn run(
             .wrap(security_headers())
             .wrap(TracingLogger::default())
             .route("/health_check", web::get().to(routes::health_check))
+            .route("/samples", web::post().to(routes::post_sample))
             .app_data(connection.clone())
             .app_data(email_client.clone())
 
