@@ -1,10 +1,7 @@
-//use {{ tmplr.project_name | snake_case }}::configuration::get_configuration;
-//use {{ tmplr.project_name | snake_case }}::startup::Application;
-//use {{ tmplr.project_name | snake_case }}::telemetry::{get_subscriber, init_subscriber};
+use {{ tmplr.project_name | snake_case }}::configuration::get_configuration;
+use {{ tmplr.project_name | snake_case }}::startup::Application;
+use {{ tmplr.project_name | snake_case }}::telemetry::{get_subscriber, init_subscriber};
 
-use sample::configuration::get_configuration;
-use sample::startup::Application;
-use sample::telemetry::{get_subscriber, init_subscriber};
 
 #[tokio::main]
 async fn main() -> std::io::Result<()> {
