@@ -21,4 +21,6 @@ steps:
   - update: .env
   - update: configuration/base.yaml
   - update: src/main.rs
+  - update: tests/api/sample_test.rs
+  - update: tests/api/helper.rs
   - remove: .tmplr.yml

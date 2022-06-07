@@ -1,5 +1,5 @@
 use uuid::Uuid;
-use sample::domain::sample_model::Sample;
+use {{ tmplr.project_name }}::domain::sample_model::Sample;
 
 use crate::helper::spawn_app;
 
