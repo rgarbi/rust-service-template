@@ -73,7 +73,7 @@ jobs:
 
       - name: Check sqlx-data.json is up-to-date
         run: |
-          cargo sqlx prepare --check -- --bin newsletter-signup-service
+          cargo sqlx prepare --check -- --bin {{ tmplr.project_name }}
 
       - name: Run cargo build
         uses: actions-rs/cargo@v1
