@@ -20,7 +20,7 @@ DB_PASSWORD="${POSTGRES_PASSWORD:=password}"
 DB_NAME="${POSTGRES_DB:={{ tmplr.project_name }}}"
 DB_PORT="${POSTGRES_PORT:=5432}"
 # Launch postgres using Docker
-if [[ -z "${SKIP_DOCKER}" || $(pg_isready -h "localhost" -U "${DB_USER}" -p "${DB_PORT}" -d "postgres";) ]]
+if [[ -z "${SKIP_DOCKER}" && $(pg_isready -h "localhost" -U "${DB_USER}" -p "${DB_PORT}" -d "postgres";) ]]
 then
   docker system prune --volumes --force
 
